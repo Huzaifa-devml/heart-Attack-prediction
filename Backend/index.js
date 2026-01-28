@@ -13,7 +13,7 @@ app.use(cors({
     origin:[
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://heart-attack-prediction.vercel.app" 
+    "https://heart-attack-prediction-1god.vercel.app" 
     ],
     credentials:true
 }))
