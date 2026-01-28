@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import{BrowserRouter,Routes,Route} from "react-router-dom"
 
-import Login from './pages/login'
+
 import Dashboard from './pages/Dashboard'
 import Signup from './pages/Signup'
+import Login from './pages/Login1'
 
 function App() {
   
