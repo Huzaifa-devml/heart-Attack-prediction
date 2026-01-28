@@ -1,0 +1,16 @@
+const handlelogout=async()=>{
+    try{
+      await fetch("/api/auth/logout",{
+        method:"POST",
+        credentials:"include",
+      })
+      navigate("/login",{replace:true})
+    }catch(err){
+      console.error("logout failed",err)
+    }
+
+  }
+   <div className="logout-container">
+      <button className="logout-btn" onClick={handlelogout}>
+        LOGOUT
+      </button>
