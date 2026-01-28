@@ -4,6 +4,7 @@ import heartimg from "../assets/heartattack.webp"
 
 import './styles/Dashboard.css'
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../config";
 
 
 const Dashboard = () => {
@@ -87,7 +88,7 @@ useLayoutEffect(() => {
       payload[key]=Number(formData[key])
     })
     try{
-      const response=await fetch("/api/predict",{
+      const response=await fetch(`${BASE_URL}/api/predict`,{
         method:"POST",
         credentials:"include",
         headers:{
@@ -106,7 +107,7 @@ useLayoutEffect(() => {
   };
   const handlelogout=async()=>{
     try{
-      await fetch("/api/auth/logout",{
+      await fetch(`${BASE_URL}/api/auth/logout`,{
         method:"POST",
         credentials:"include",
       })

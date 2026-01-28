@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "./styles/Auth.css"
 import { Link, useNavigate } from 'react-router-dom'
+import BASE_URL from '../config'
 
 function Login() {
   const[email,setEmail]=useState("")
@@ -9,7 +10,7 @@ function Login() {
   const navigate=useNavigate()
   const handlelogin=async function(){
     console.log("button clicked")
-    const response=await fetch("/api/auth/login",{
+    const response=await fetch(`${BASE_URL}/api/auth/login`,{
       method:"POST",
       credentials:"include",
       headers:{

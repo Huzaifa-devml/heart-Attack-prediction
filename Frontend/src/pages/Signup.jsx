@@ -2,6 +2,7 @@ import React from 'react'
 import "./styles/Auth.css"
 import { Link,useNavigate } from 'react-router-dom'
 import { useState } from 'react';
+import BASE_URL from '../config';
 
 function Signup() {
   const navigate=useNavigate();
@@ -9,7 +10,7 @@ function Signup() {
     email:"",
     password:"",
     name:"",
-    username:","
+    username:"",
   })
   const handlechange=function(e){
     const{name,value}=e.target;
@@ -20,7 +21,7 @@ function Signup() {
   }
   const handleSignup=async function(){
     try{
-      const response=await fetch("http://localhost:3000/api/auth/register",{
+      const response=await fetch(`${BASE_URL}/api/auth/register`,{
         method:"post",
         headers:{
           "content-type":"application/json"
