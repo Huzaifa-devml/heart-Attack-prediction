@@ -15,14 +15,12 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config()
 const app=express()
-app.use(cors({
-    origin:[
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "https://heart-attack-prediction-7x23.vercel.app"
-    ],
-    credentials:true
-}))
+const corsOptions={
+    origin:"https://heart-attack-prediction-7x23.vercel.app",
+    credentials:true,
+}
+app.use(cors(corsOptions))
+app.options("*",cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({extended:true}))
