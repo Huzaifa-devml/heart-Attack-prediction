@@ -13,6 +13,6 @@ input_data=json.loads(sys.argv[1])
 features=[input_data[col] for col in columns]
 features=np.array(features).reshape(1,-1)
 features=scaler.transform(features)
-prediction=model.predict(features)[0]
-result="high" if prediction>0.35 else "low"
+prediction=model.predict_proba(features)[0][1]
+result="high" if prediction >= 0.35 else "low"
 print(result)
