@@ -15,12 +15,12 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config()
 const app=express()
-const corsOptions={
-    origin:"https://heart-attack-prediction-7x23.vercel.app",
-    credentials:true,
-}
-app.use(cors(corsOptions))
-app.options("*",cors(corsOptions))
+app.use(cors({
+origin: "https://heart-attack-prediction-7x23.vercel.app",
+credentials: true,
+methods: ["GET", "POST", "OPTIONS"],
+allowedHeaders: ["Content-Type", "Authorization"]
+}))
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({extended:true}))
