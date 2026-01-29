@@ -5,6 +5,12 @@ import dotenv from"dotenv"
 import cookieParser from 'cookie-parser'
 import authRoutes from "./routes/authRoutes.js"
 import {spawn} from 'child_process'
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 
 dotenv.config()
@@ -27,8 +33,8 @@ mongoose.connect(process.env.MONGO_URI).then(()=>console.log("mongodb connected"
 app.use('/api/auth',authRoutes)
 app.post("/api/predict",(req,res)=>{
     console.log("predict api hit")
-    const pythonprocess=spawn("python",[
-        "predict.py",
+    const pythonprocess=spawn("python3",[
+        path.join(__dirname,"predict.py"),
         JSON.stringify(req.body)
     ])
     let result="";
@@ -39,9 +45,17 @@ app.post("/api/predict",(req,res)=>{
         console.error("python error",data.toString())
     });
     pythonprocess.on("close",()=>{
-        res.json({prediction:result.trim()})
+        const finalresult=result.trim()
+        if(!finalresult){
+            console.error("empty prediction from python")
+            return res.status(500).json({prediction:"error"})
+        }
+        res.json({prediction:finalresult})
     })
 })
 
 
-app.listen(3000)
+const PORT=process.env.PORT || 3000;
+app.listen(PORT,()=>{
+console.log(`SERVER RUNNING ON ${PORT}`)
+})
