@@ -1,0 +1,85 @@
+.risk-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+}
+
+.risk-wrapper.high {
+  background: linear-gradient(135deg, #1e1e2f, #3a1c1c);
+}
+
+.risk-wrapper.low {
+  background: linear-gradient(135deg, #1e2f2f, #1c3a2b);
+}
+
+.risk-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 40px;
+  max-width: 520px;
+  width: 100%;
+  color: #ffffff;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  animation: fadeUp 0.7s ease;
+}
+
+.risk-card h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.risk-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+.risk-points p {
+  margin: 8px 0;
+  font-size: 1rem;
+  opacity: 0.95;
+}
+
+.risk-note {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.risk-btn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #ff4d4d;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.risk-wrapper.low .risk-btn {
+  background: #2ecc71;
+}
+
+.risk-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

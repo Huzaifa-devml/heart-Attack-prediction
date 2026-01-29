@@ -14,5 +14,5 @@ features=[input_data[col] for col in columns]
 features=np.array(features).reshape(1,-1)
 features=scaler.transform(features)
 prediction=model.predict(features)[0]
-result="high risk" if prediction==1 else "Low risk"
+result="high" if prediction==1 else "low"
 print(result)

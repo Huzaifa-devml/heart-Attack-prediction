@@ -97,8 +97,16 @@ useLayoutEffect(() => {
         body:JSON.stringify(payload)
       })
       const data=await response.json()
-      console.log(data.prediction)
-      setResult(data.prediction);
+      console.log("FULL DATA:", data);
+      console.log("prediction value:", data.prediction);
+      console.log("prediction type:", typeof data.prediction);
+      const prediction=data.prediction.toLowerCase().trim()
+      if(prediction==="high"){
+        navigate("/high-risk")
+      }
+      else{
+        navigate("/low-risk")
+      }
       
     }catch(error){
       console.error("prediction error:",error)
@@ -117,6 +125,7 @@ useLayoutEffect(() => {
     }
 
   }
+  
 
   return (
     <div className="dashboard-wrapper">
@@ -181,7 +190,7 @@ useLayoutEffect(() => {
         <label><input type="checkbox" name="ST_Slope_Up" onChange={handleChange} /> Up</label>
       </div>
 
-      <button type="submit" className="predict-btn">
+      <button type="submit" className="predict-btn" >
         Predict
       </button>
     </form>
