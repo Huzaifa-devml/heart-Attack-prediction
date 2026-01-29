@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import "./styles/Riskpages.css"
+import "./styles/RiskPages.css"
 
 function LowRisk() {
     const navigate=useNavigate()
