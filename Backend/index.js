@@ -16,10 +16,26 @@ const __dirname = path.dirname(__filename);
 dotenv.config()
 const app=express()
 app.use(cors({
-origin: "https://heart-attack-prediction-7x23.vercel.app",
-credentials: true,
-methods: ["GET", "POST", "OPTIONS"],
-allowedHeaders: ["Content-Type", "Authorization"]
+origin: (origin, callback) => {
+    // allow requests with no origin (like Postman)
+    if (!origin) return callback(null, true);
+
+    // allow localhost
+    if (origin.startsWith("http://localhost")) {
+      return callback(null, true);
+    }
+
+    // allow ALL vercel preview + prod domains
+    if (origin.endsWith(".vercel.app")) {
+      return callback(null, true);
+    }
+
+    // block everything else
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }))
 app.use(express.json())
 app.use(cookieParser())
